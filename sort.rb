@@ -38,26 +38,37 @@ module Sort
         if array1[i1] <= array2[i2]
           result << array1[i1]
           i1 += 1
-        elsif array2[i2] <= array1[i1]
+        else
           result << array2[i2]
           i2 += 1
         end
+      end
+      result += array1[i1..-1]
+      result += array2[i2..-1]
+    end
+
+    def self.mergesort(array)
+
+      if array.length <= 1
+        return array
+      else
+        first_half = []
+        second_half = []
+        first_half.concat(array[0...array.size / 2])
+        second_half.concat(array[array.size / 2..-1])
+        a = mergesort(first_half)
+        b = mergesort(second_half)
+        merge(a, b)
       end
 
-      if i1 < array1.size
-        while i1 < array1.size
-          result << array1[i1]
-          i1 +=1
-        end
-      elsif i2 < array2.size
-        while i2 < array2.size
-          result << array2[i2]
-          i2 += 1
-        end
-      end
-      result
     end
 
 end
+
+
+
+
+
+
 
 
